@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" ng-app="phonecatApp">
+<head>
+  <meta charset="utf-8">
+  <title>My HTML File</title>
+  <link rel="stylesheet" href="js/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="js/angular/angular.js"></script>
+  <script src="js/angular-route/angular-route.js"></script>
+  <script src="js/controllers.js"></script>
+</head>
+<body ng-controller="PhoneListCtrl">
+
+  <div class="container-fluid">
+    <div class="row">
+      -
+      <div class="col-md-10">
+        <!--Body content-->
+
+        Search: <input ng-model="query">
+        Sort by:
+        <select ng-model="orderProp">
+          <option value="name">Alphabetical</option>
+          <option value="age">Newest</option>
+        </select>
+
+      <ul class="phones">
+         <li ng-repeat="phone in phones | filter:query | orderBy:orderProp" class="thumbnail">
+           <a href="#/phones/{{phone.id}}" class="thumb"><img ng-src="{{phone.imageUrl}}"></a>
+           <a href="#/phones/{{phone.id}}">{{phone.name}}</a>
+           <p>{{phone.snippet}}</p>
+         </li>
+       </ul>
+      </div>
+    </div>
+  </div>
+  <script src="http://localhost:35729/livereload.js"></script>
+</body>
+</html>
